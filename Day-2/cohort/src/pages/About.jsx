@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DataContext } from '../context/UserContext'
 
 const About = () => {
+  let myName = useContext(DataContext);
   return (
     <div>
-        <h1 className='text-3xl'>About Page</h1>
+        <h1 className='text-3xl'>
+          My Name is : {myName}
+        </h1>
     </div>
   )
 }
