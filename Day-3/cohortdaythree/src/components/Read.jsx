@@ -1,11 +1,10 @@
 import React from 'react'
 
-const Read = ({users,setusers}) => {
+const Read = ({usersData,setusersData}) => {
     
-    let renderUser = users.map((user,idx)=>{
+    let renderUser = usersData.map((user,idx)=>{
         return <ol key={idx} className='flex gap-3 border px-5 py-2 rounded'>
-            <span>Name: {user.username}</span>
-            <span>Age: {user.age}</span>
+            <span>Name: {user.uesername}</span>
             </ol>
     })
     
