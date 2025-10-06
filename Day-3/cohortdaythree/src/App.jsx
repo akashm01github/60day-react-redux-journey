@@ -1,21 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Create from './components/Create';
+import Read from './components/Read';
 
 const App = () => {
-  let users = [
-    {userNam:"Ankur", age: 25},
-    {userNam:"Akash", age: 24},
-    {userNam:"John", age: 69},
-  ]
+ 
+  const [users, setusers] = useState([
+    {username: "Akash",age:25},
+    {username: "Apu",age:40},
+    {username: "John Wick",age:69},
+    {username: "Dodo",age:25},
+    {username: "Dodo",age:25},
+    {username: "Dodo",age:25},
+  ])
+
+
+//  console.log(ussersData);
+
   return (
-    <div>
-      {
-        users.map((user,idx)=>{
-          return <ul key={idx} className='flex gap-5'>
-            <li><b>Name</b>: {user.userNam}</li>
-            <li><b>Age</b>: {user.age}</li>
-          </ul>
-        })
-      }
+    <div className='flex border flex-col gap-5 justify-center items-center px-2 py-4'>
+      <Create/>
+      <Read users={users} setusers={setusers}/>
     </div>
   )
 }
