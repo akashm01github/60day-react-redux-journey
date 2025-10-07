@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { DataContext } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 const Read = () => {
 
@@ -10,6 +11,7 @@ const Read = () => {
     const deleteHandeler = (id)=>{
         const filterUsers = usersData.filter((user)=> user.id != id);
         setusersData(filterUsers);  
+        toast.error('Data Deleted')
     }
 
 
