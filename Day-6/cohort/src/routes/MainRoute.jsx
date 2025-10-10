@@ -4,7 +4,7 @@ import Home from '../pages/Home'
 import About from '../pages/About'
 import Product from '../pages/Product'
 import Contact from '../pages/Contact'
-import ProductDetails from '../pages/ProductDetails'
+import ProductDetails from '../pages/ProductDetails';
 
 const MainRoute = () => {
     return (
