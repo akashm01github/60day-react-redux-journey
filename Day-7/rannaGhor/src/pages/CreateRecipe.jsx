@@ -2,12 +2,14 @@ import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import {nanoid} from 'nanoid'
 import { MyRecipeContext } from '../context/RecipeContext';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const CreateRecipe = () => {
 
     const [data, setdata] = useContext(MyRecipeContext);
 
-
+    const navigate =  useNavigate();
 
     const {
         register,
@@ -25,6 +27,13 @@ const CreateRecipe = () => {
         copyData.push(recipe);
 
         setdata(copyData);
+
+        toast.success("Recipe Created");
+
+        reset();
+
+        navigate('/recipes')
+        
     }
 
     console.log(data)
