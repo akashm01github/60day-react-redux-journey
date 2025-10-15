@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MyRecipeContext } from '../context/RecipeContext';
 import { useForm } from 'react-hook-form';
@@ -13,72 +13,134 @@ const SingleRecipes = () => {
 
     const params = useParams();
 
-    const recipe = data.find((recipe)=>params.id == recipe.id);
+    const recipe = data.find((recipe) => params.id == recipe.id);
 
 
-    
+
+
 
 
     // Form Part
 
-    const navigate =  useNavigate();
+    const navigate = useNavigate();
 
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm({defaultValues:{
-        title:recipe.title,
-        description:recipe.description,
-        ingredients:recipe.ingredients,
-        instructions:recipe.instructions,
-        price:recipe.price,
-        catagories:recipe.catagories,
-        recipe_url:recipe.recipe_url
+    } = useForm({
+        defaultValues: {
+            title: recipe?.title,
+            description: recipe?.description,
+            ingredients: recipe?.ingredients,
+            instructions: recipe?.instructions,
+            price: recipe?.price,
+            catagories: recipe?.catagories,
+            recipe_url: recipe?.recipe_url
+        }
+    })
 
 
-    }})
-
-
-    const submitHandeler = (recipeData) => {
-        const recipeIndex = data.findIndex((recipe)=>params.id == recipe.id);
+    const updateHandeler = (recipeData) => {
+        const recipeIndex = data.findIndex((recipe) => params.id == recipe.id);
 
         const copyData = [...data];
 
-        copyData[recipeIndex] = {...copyData[recipeIndex],...recipeData}
-        
-        setdata(copyData)
+        copyData[recipeIndex] = { ...copyData[recipeIndex], ...recipeData }
 
-        
+        setdata(copyData)
+        localStorage.setItem("recipes", JSON.stringify(copyData));
+
+        toast.success('Recipe Updated');
 
     }
 
 
-    const deleteHandeler = ()=>{
-        const filterData = data.filter((r)=> r.id != params.id);
+    const deleteHandeler = (recipeTitle) => {
+        const filterData = data.filter((r) => r.id != params.id);
 
         setdata(filterData);
 
+        localStorage.setItem("recipes", JSON.stringify(filterData));
+
+        //Removing from the local 
+        localStorage.setItem("fav", JSON.stringify(filterData));
+
+        // console.log(id)
+
         navigate('/recipes')
+
+
+
+        toast.error(`${recipeTitle} Recipe Deleted`);
     }
-    
-    return ( recipe ? <div className='mt-5 w-full py-3 px-2 border flex  gap-4'>
+
+
+
+    // const favourite = ;
+
+    const [favourite, setfavourite] = useState(JSON.parse(localStorage.getItem("fav")) || []);
+
+
+
+    const favHandeler = () => {
+        const copyFav = [...favourite];
+
+        copyFav.push(recipe);
+
+        setfavourite(copyFav);
+
+        localStorage.setItem("fav", JSON.stringify(copyFav))
+    }
+
+
+    useEffect(()=>{
+
+    },[favourite])
+
+
+    const unfavHandeler = () => {
+        const filterFav = favourite.filter((f)=>f.id != recipe.id);
+        setfavourite(filterFav);
+        localStorage.setItem("fav", JSON.stringify(filterFav))
+    }
+
+
+
+
+
+
+
+
+
+    return (recipe ? <div className='mt-5 w-full py-3 px-2 border flex  gap-4'>
         {/* Showing Data */}
-       <div className='mt-5 w-1/2 py-3 px-2 border flex flex-col gap-10'>
-         <h1 className='text-2xl font-black text-pink-500'>{recipe.title}</h1>
-        <div className='border h-[300px]'>
-            <img className='w-full h-full' src={recipe.recipe_url} alt="" />
+        <div className='mt-5 w-1/2 py-3 px-2 border flex flex-col gap-10'>
+            <div className='flex justify-between items-center'>
+                <h1 className='text-2xl font-black text-pink-500'>{recipe.title}</h1>
+
+
+                <span className='flex justify-center items-center gap-2 relative'>
+
+                    {favourite.find((f)=>f.id == recipe.id) ? <i onClick={unfavHandeler} className="ri-heart-3-fill text-2xl absolute right-2 text-red-500"></i> : <i onClick={favHandeler} className="ri-heart-3-line text-2xl  absolute right-2"></i>
+                    }
+                </span>
+
+
+            </div>
+            <div className='border h-[300px]'>
+                <img className='w-full h-full' src={recipe.recipe_url} alt="" />
+            </div>
+
+            <p>Description: {recipe.description}</p>
+            <p>Ingredients: {recipe.ingredients}</p>
+            <p>Instructions: {recipe.instructions}</p>
         </div>
 
-        <p>{recipe.description}</p>
-        <p>{recipe.ingredients}</p>
-        <p>{recipe.instructions}</p>
-       </div>
-
         {/* Updating Data */}
-       <div className='w-1/2'>
-             <form onSubmit={handleSubmit(submitHandeler)} className='flex flex-col gap-5 rounded-2xl border px-6 py-3  w-full bg-[#FFDFD6]'>
+        <div className='w-1/2'>
+            <form onSubmit={handleSubmit(updateHandeler)} className='flex flex-col gap-5 rounded-2xl border px-6 py-3  w-full bg-[#FFDFD6]'>
                 <input  {...register("title", { required: "Recipe Title Can't Be Empty" })} type="text" placeholder='Enter the Recipe Title' className='px-4 py-2 text-black font-semibold  text-xl border outline-0 rounded bg-[#F5EFFF]' />
                 {errors.title && <span className='text-red-600 font-semibold'>{errors.title.message}</span>}
 
@@ -99,7 +161,7 @@ const SingleRecipes = () => {
                 {errors.instructions && <span className='text-red-600 font-semibold'>{errors.instructions.message}</span>}
 
 
-                
+
                 <input  {...register("price", { required: "Recipe Price Can't Be Empty" })} type="text" placeholder='Enter the Price' className='px-4 py-2 text-black font-semibold  text-xl border outline-0 rounded bg-[#F5EFFF]' />
                 {errors.price && <span className='text-red-600 font-semibold'>{errors.price.message}</span>}
 
@@ -111,9 +173,9 @@ const SingleRecipes = () => {
                 </select>
 
                 <button className='border px-4 py-3 active:scale-80 transition-all cursor-pointer text-xl rounded-lg bg-green-400 text-black font-semibold'>Update Recipe</button>
-                <button onClick={deleteHandeler} className='border px-4 py-3 active:scale-80 transition-all cursor-pointer text-xl rounded-lg bg-red-500 font-semibold'>Delete Recipe</button>
+                <button onClick={() => deleteHandeler(recipe.title)} className='border px-4 py-3 active:scale-80 transition-all cursor-pointer text-xl rounded-lg bg-red-500 font-semibold'>Delete Recipe</button>
             </form>
-       </div>
+        </div>
     </div> : <h1 className='text-4xl text-red-600 font-semibold'>Loading...</h1>)
 }
 

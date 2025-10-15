@@ -9,6 +9,7 @@ const Nav = () => {
                 <NavLink className={(e) => e.isActive ? "text-yellow-300 font-semibold" : ""} to='/about'>About</NavLink>
                 <NavLink className={(e) => e.isActive ? "text-yellow-300 font-semibold" : ""} to='/recipes'>Recipes</NavLink>
                 <NavLink to="/create~recipe" className={({ isActive }) =>`border px-3 py-1 rounded ${isActive ? "text-yellow-400" : ""}`}>Create Recipe</NavLink>
+                <NavLink className={(e) => e.isActive ? "text-yellow-300 font-semibold" : ""} to='/fav'>Favourite</NavLink>
             </nav>
         </div>
     )
