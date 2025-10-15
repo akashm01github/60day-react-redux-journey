@@ -3,6 +3,7 @@ import { recipeDataContext } from '../context/RecipeContext'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 const SingleRecipe = () => {
     const [data, setdata] = useContext(recipeDataContext);
@@ -12,7 +13,16 @@ const SingleRecipe = () => {
 
     const navigate = useNavigate();
 
-    console.log(recipe)
+    // console.log(recipe);
+
+    //! Use Effect 
+     useEffect(()=>{
+    console.log('SingleRecipe.jsx Mount');
+
+    return ()=>{
+      console.log('SingleRecipe.jsx Unmount');
+    }
+  },[])
 
     // Form Part
    
