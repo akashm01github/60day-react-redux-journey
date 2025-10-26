@@ -1,27 +1,20 @@
 import axios from '../src/api/AxiosConfig'
 import React, { useEffect } from 'react'
-import { asyncgetUsers } from './store/userActions';
-
-import { useSelector, useDispatch } from 'react-redux';
-
+import MainRoutes from './routes/MainRoutes';
+import Nav from './components/Nav';
+import { asynccurrentuser } from './store/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
-
   const dispatch  = useDispatch();
-
-  const data = useSelector((state)=>state.user);
-
-  console.log(data)
-
-
   useEffect(()=>{
-    dispatch(asyncgetUsers())
+    dispatch(asynccurrentuser());
   },[])
 
-
   return (
-    <div className='text-2xl'>
-      <h1>Hello</h1>
+    <div className='w-screen h-screen bg-gray-800 text-white font-thin px-[10%]'>
+      <Nav/>
+      <MainRoutes/>
     </div>
   )
 }
