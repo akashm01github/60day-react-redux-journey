@@ -65,3 +65,34 @@ export const asyncregisteruser = (user) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+
+
+
+export const asyncupdateuser = (id,user) => async (dispatch, getState) => {
+    try {
+
+       const {data} = await axios.patch('/users/'+id, user);
+    //    console.log(data)
+       localStorage.setItem('user', JSON.stringify(data))
+
+       dispatch(asynccurrentuser());
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+export const asyncdeleteuser = (id) => async (dispatch, getState) => {
+    try {
+
+       await axios.delete(`/users/${id}`);
+       dispatch(asynclogoutuser());
+    //    console.log('User Deleted')
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
