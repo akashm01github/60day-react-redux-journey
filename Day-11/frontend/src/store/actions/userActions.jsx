@@ -1,7 +1,7 @@
 
 // Import the Modules 
 import axios from '../../api/AxiosConfig';
-import { loaduser } from '../reducers/userSlice';
+import { loaduser, removeuser } from '../reducers/userSlice';
 
 
 export const asyncloginuser = (user) => async (dispatch, getState) => {
@@ -19,8 +19,9 @@ export const asyncloginuser = (user) => async (dispatch, getState) => {
 
 export const asynclogoutuser = (user) => async (dispatch, getState) => {
     try {
-
         localStorage.removeItem('user');
+
+        dispatch(removeuser())
 
     } catch (error) {
         console.log(error)
@@ -56,6 +57,7 @@ export const asyncregisteruser = (user) => async (dispatch, getState) => {
     try {
 
         const response = await axios.post('/users', user);
+
         console.log(response);
 
 

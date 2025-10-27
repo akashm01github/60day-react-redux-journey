@@ -12,14 +12,26 @@
     {
       "id": "1",
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      "price": 109.95,
+      "price": "300",
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-      "rating": {
-        "rate": 3.9,
-        "count": 120
-      }
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png"
+    },
+    {
+      "id": "-99gtaZFPp76y1tJ2rsgj",
+      "title": "SanDisk SSD PLUS 1TB Internal SSD",
+      "price": "109",
+      "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
+      "category": "Electronics",
+      "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)"
+    },
+    {
+      "id": "xQo0NnoG1XGiZEaICIJmf",
+      "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+      "price": "600",
+      "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2t.png",
+      "category": "women's clothing",
+      "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look."
     }
   ],
   "carts": []
