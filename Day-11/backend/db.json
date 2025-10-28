@@ -5,14 +5,16 @@
       "username": "akash-mukherjee",
       "email": "whoakashmukherjee@gmail.com",
       "password": "12345",
-      "isAdmin": true
+      "isAdmin": true,
+      "cart": []
     },
     {
       "id": "74u8WFATnpBSaH1vrkteY",
       "username": "dev-akash",
       "email": "akash.bamun2001@gmail.com",
       "password": "12345",
-      "isAdmin": false
+      "isAdmin": false,
+      "cart": []
     }
   ],
   "products": [
@@ -40,6 +42,5 @@
       "category": "women's clothing",
       "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look."
     }
-  ],
-  "carts": []
+  ]
 }

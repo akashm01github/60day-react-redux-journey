@@ -20,12 +20,11 @@ const Nav = () => {
     return (
         <nav className='flex mb-10 justify-center items-center gap-x-5 p-10'>
             <NavLink to='/'>Home</NavLink>
-            {/* <NavLink to='/products'>Products</NavLink> */}
             {user ?
                 <>
                     {user&& user.isAdmin && <NavLink to='/admin/create-product'>Create Product</NavLink>}
                     <NavLink to='/admin/user-profile'>Profile</NavLink>
-                    {/* <button onClick={()=>{LogoutHandeler()}} className='border px-2 py-1'>Log out</button> */}
+                    <NavLink to='/cart'>Cart</NavLink>
                 </> :
                 <>
                     <NavLink to='/login'>Login</NavLink>
