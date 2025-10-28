@@ -25,7 +25,7 @@ const Login = () => {
     user.id = nanoid();
     console.log(user)
     dispatch(asyncloginuser(user));
-    navigate('/')
+    // navigate('/')
     
   }
 

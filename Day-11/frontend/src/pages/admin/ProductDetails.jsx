@@ -7,12 +7,12 @@ import { asyncdeleteproduct, asyncupdateproduct } from '../../store/actions/prod
 const ProductDetails = () => {
   const products = useSelector((state) => state.productReducer.products);
   const users = useSelector((state) => state.userReducer.users);
-  console.log(users)
+  // console.log(users)
 
 
   const { id } = useParams();
   const product = products?.find((product) => product.id == id);
-  console.log(product);
+  // console.log(product);
 
 
 

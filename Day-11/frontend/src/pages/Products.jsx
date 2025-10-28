@@ -1,19 +1,46 @@
-import React from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { asyncupdateuser } from '../store/actions/userActions';
+import axios from '../api/AxiosConfig';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Products = () => {
   const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.productReducer.products);
+  // const products = useSelector((state) => state.productReducer.products);
   const users = useSelector((state) => state.userReducer.users);
 
+
+  const [products, setproducts] = useState([]);
+  const [hasMore, sethasMore] = useState(true)
+
+
+  const fetchProducts = async () => {
+    try {
+      const { data } = await axios.get(`/products?_start=${products.length}&_limit=6`);
+      if(data.length == 0){
+        sethasMore(false)
+       
+      }
+      else{
+        sethasMore(true)
+        setproducts([...products,...data]);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  useEffect(() => {
+    fetchProducts();
+  }, [])
 
 
 
   const AddtoCartHandeler = (product) => {
-    const copyuser = { ...users, cart:[...users.cart] };
+    const copyuser = { ...users, cart: [...users.cart] };
     const x = copyuser.cart.findIndex((c) => c?.product?.id == product.id);
 
 
@@ -21,7 +48,7 @@ const Products = () => {
       copyuser.cart.push({ product, quantity: 1 })
     }
     else {
-      copyuser.cart[x] = {product,quantity:copyuser.cart[x].quantity+1};
+      copyuser.cart[x] = { product, quantity: copyuser.cart[x].quantity + 1 };
     }
 
     dispatch(asyncupdateuser(copyuser.id, copyuser));
@@ -44,8 +71,20 @@ const Products = () => {
     </div>
   })
 
-  return products.length > 0 ? <div className='w-full p-2 gap-5  h-screen overflow-auto flex flex-wrap justify-center'>
-    {renderProduct}
+  return products.length > 0 ? <div>
+    <InfiniteScroll dataLength={products.length}  next={fetchProducts} hasMore={hasMore}  loader={<h4>Loading...</h4>}  endMessage={
+    <p style={{ textAlign: 'center' }}>
+      <b className='text-2xl'>Yay! You have seen it all</b>
+    </p>
+  } >
+      <div className='w-full p-2 gap-5  h-screen overflow-auto flex flex-wrap justify-center'>
+        <Suspense fallback={<h1 className='text-center'>Loading...</h1>}>
+
+      {renderProduct}
+        </Suspense>
+
+      </div>
+    </InfiniteScroll>
   </div> : <><h1>Loading....</h1></>
 }
 
