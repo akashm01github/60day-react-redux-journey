@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
 
@@ -13,10 +14,10 @@ const Nav = () => {
 
 
             <div className='hidden md:flex justify-center items-center gap-4'>
-                <h4>Home</h4>
-                <h4>Movies</h4>
-                <h4>TVShows</h4>
-                <h4>MyList</h4>
+                <NavLink to='/' className={(e)=>{e.isActive && 'text-amber-300'}}>Home</NavLink>
+                <NavLink to='/movies'>Movies</NavLink>
+                <NavLink to='/tvShows'>TVShows</NavLink>
+                <NavLink to='/my-list'>MyList</NavLink>
                 <input type="text" placeholder='Search' className='border-0 rounded py-0.5 px-1 outline-0 bg-[#2a2a2a]' />
             </div>
 
