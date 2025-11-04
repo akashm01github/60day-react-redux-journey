@@ -1,0 +1,19 @@
+🔰useEffect 
+----------------------------------------------------------------
+
+. What is use of useEffect
+. What example we will take in this part
+. Syntax of useEffect
+. Use Effect with state
+. Use Effect with props
+. Interview Question
+
+-----------------------------------------------------------------
+
+🟣 Remove side effect inside component
+🟠 Remove side effect from outside component
+🟢 Use to fetch data
+🟡 Can use as life cycle methods
+🔴 Can use for DOM manipulation
+🟧 Much More
+
