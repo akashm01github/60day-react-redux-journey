@@ -1,0 +1,7 @@
+Lazy Loading in React js
+
+. What is Lazy loading.
+. How to use lazy loading.
+. Suspense use with lazy loading.
+. Check Performance.
+. Interview Questions.
