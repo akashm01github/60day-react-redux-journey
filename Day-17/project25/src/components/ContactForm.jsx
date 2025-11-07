@@ -2,6 +2,8 @@ import React, { use, useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { UserDetailContext } from "../context/UserContext";
 
+import {nanoid} from 'nanoid'
+
 const ContactForm = ()=> {
 
     const [userDetails, setuserDetails] = useContext(UserDetailContext);
@@ -15,6 +17,8 @@ const ContactForm = ()=> {
 
 
     const handelClick  = (userdata)=>{
+
+        userdata.id = nanoid();
         const copyUser = [...userDetails];
 
         copyUser.push(userdata);
@@ -22,6 +26,8 @@ const ContactForm = ()=> {
         setuserDetails(copyUser);
 
         console.log(userDetails)
+
+    
     }
     
     

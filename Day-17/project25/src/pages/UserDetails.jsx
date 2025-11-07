@@ -7,12 +7,16 @@ const UserDetails = () => {
   const [userDetails, setuserDetails] = useContext(UserDetailContext);
 
 
+  
+
 
   const renderData = userDetails.map((singleUser,idx)=>{
     return (
-      <UserDetailCard key={idx} singleUser={singleUser} />
+      <UserDetailCard key={idx} singleUser={singleUser}/>
     )
   })
+
+
 
 
   return (
