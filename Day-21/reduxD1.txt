@@ -1,0 +1,10 @@
+✔️ Mutability 
+✔️ Immutability 
+✔️ How to Achieve this In JS Using (object.freze) and getter and setter function.
+
+💼 State Management Library 
+   -> Redux
+   -> Zustand
+   -> Mobex / Mobex state Tree
+   -> Recoil
+
