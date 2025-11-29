@@ -8,3 +8,11 @@
    -> Mobex / Mobex state Tree
    -> Recoil
 
+state : {
+   gState: { },
+   fState: { },
+   eState: { },
+}
+
+
+function reducer (){}
