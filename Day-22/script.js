@@ -73,5 +73,3 @@
 // ! NOW USING REDUX HOW TO IMPLEMENT 
 
 
-
-console.log("Hello World");
