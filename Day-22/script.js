@@ -1,75 +1,62 @@
-
-// let reduxState = {
-//     count: 0,
-//     userName: "Akash Mukherjee",
-//     age: 24
-// }
-
-
-// const prevState = state
-
-// function increment() {
-
-// Mutate State
-//     state.count  = state.count+1;
-
-
-//     Not Mutating State
-//     state = { ...state, count: state.count + 1 }
-
-// }
+import {createStore} from 'redux';
 
 
 
-// console.log(state);
-// increment()
-// console.log(state);
-// increment()
-// console.log(state);
-// increment()
-// console.log(state);
 
+const initialState = {
+    count: 0,
+    userName: "Akash Mukherjee",
+    age: 24
+}
 
-// function reducer(state, action) {
-//     if (action.type == "post/increment") {
-//         return { ...state, count: state.count + 1 }
-//     }
-//     else if (action.type == "post/decrement") {
-//         return { ...state, count: state.count - 1 }
-//     }
+const INCREMENT = "post/increment";
 
-//     else if (action.type == "post/incrementby30") {
-//         return { ...state, count: state.count + action.payload }
-//     }
+const DECREMENT = "post/decrement";
 
-//     else if (action.type == "post/decrementby10") {
-//         return { ...state, count: state.count - action.payload }
-//     }
+const INCREMENTBY = "post/incrementby30";
 
-//     return state
-// }
-
-
-// What REDUX Will Do
-
-// reduxState = reducer(reduxState, { type: "post/increment" });
-// console.log(reduxState)
-
-// reduxState = reducer(reduxState, { type: "post/increment" });
-// console.log(reduxState)
-
-// reduxState = reducer(reduxState, { type: "post/decrement" });
-// console.log(reduxState)
-
-// reduxState = reducer(reduxState, { type: "post/incrementby30", payload: 30 });
-// console.log(reduxState)
-
-
-// reduxState = reducer(reduxState, { type: "post/decrementby10", payload: 10 });
-// console.log(reduxState)
+const DECREMENTBY = "post/decrementby10";
 
 
 
-// ! NOW USING REDUX HOW TO IMPLEMENT 
+function reducer(state = initialState, action) {
+    if (action.type == INCREMENT) {
+        return { ...state, count: state.count + 1 }
+    }
+    else if (action.type == DECREMENT) {
+        return { ...state, count: state.count - 1 }
+    }
+
+    else if (action.type == INCREMENTBY) {
+        return { ...state, count: state.count + action.payload }
+    }
+
+    else if (action.type == DECREMENTBY) {
+        return { ...state, count: state.count - action.payload }
+    }
+
+    return state
+}
+
+
+const store = createStore(reducer)
+
+
+store.subscribe(()=>{
+    console.log(store.getState())
+})
+
+
+store.dispatch({type : INCREMENT})
+
+
+store.dispatch({type : DECREMENT})
+
+
+store.dispatch({type : INCREMENTBY , payload:40})
+
+
+store.dispatch({type : DECREMENTBY , payload:10})
+
 
 
