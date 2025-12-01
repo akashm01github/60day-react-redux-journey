@@ -1,5 +1,5 @@
 import {createStore} from 'redux'
-import { mycreateStore } from './myRedux'
+import { myCreateStore } from './myRedux';
 
 const initialState = {
     count: 0,
@@ -21,22 +21,39 @@ function reducer(state = initialState, action) {
     return state;
 }
 
-const store = createStore(reducer);
+// const store = createStore(reducer);
 
-const myStore = mycreateStore(reducer);
 
-console.log(store);
 
-console.log(myStore)
+// console.log(store);
+
+// store.subscribe(()=>{
+//     console.log(store.getState())
+// })
+
+// store.dispatch({type:INCREMENT})
+
+
+// store.dispatch({type:INCREMENTBY, payload:30})
+
+
+//! OWN REDUX 
+
+const myStore = myCreateStore(reducer);
 
 myStore.subscribe(()=>{
-    console.log(myStore.getState())
+    console.log(myStore.getState());
 })
 
-myStore.dispatch({type:INCREMENT})
+myStore.dispatch({type:INCREMENT});
+
+myStore.dispatch({type:INCREMENT});
+
+myStore.dispatch({type:INCREMENT});
+
+myStore.dispatch({type:INCREMENT});
 
 
-myStore.dispatch({type:INCREMENTBY, payload:30})
 
 
 
