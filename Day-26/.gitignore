@@ -10,19 +10,31 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+logs/
+*.log
 
 # Environment variables
 .env
 .env.local
-.env.*.local
+.env.development
+.env.production
+.env.test
 
-# Temp files
-.DS_Store
-*.tmp
-
-# IDE folders
+# Editor folders
 .vscode/
 .idea/
 
+# OS generated files
+.DS_Store
+Thumbs.db
+
 # Cache
+/.parcel-cache/
+/.next/
+/.vercel/
 /.cache/
+
+# Temporary files
+*.tmp
+*.swp
+*.tmp.*

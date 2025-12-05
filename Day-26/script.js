@@ -2,7 +2,8 @@ import { combineReducers, createStore } from 'redux'
 
 import { products } from "./productList";
 import productReducer from './../Day-25/productsReducer';
-import cartReducer from './cartReducer';
+import cartReducer, { addToCart, increaseCartItemQuantity } from './cartReducer';
+import {decreaseCartItemQuantity} from './cartReducer';
 
 const initialState = {
     product: products,
@@ -16,7 +17,7 @@ const reducer = combineReducers({
 })
 
 
-const store = createStore(reducer);
+const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__?.());
 
 
 store.subscribe(() => {
@@ -25,11 +26,13 @@ store.subscribe(() => {
 
 
 // ADD TO CART
-store.dispatch({ type: "addToCart", payload: { productId: 1, count: 1 } });
-store.dispatch({ type: "addToCart", payload: { productId: 2, count: 1 } });
-store.dispatch({ type: "addToCart", payload: { productId: 3, count: 1 } });
-store.dispatch({ type: "addToCart", payload: { productId: 4, count: 1 } });
+store.dispatch(addToCart(1));
+store.dispatch(addToCart(2));
+store.dispatch(addToCart(3));
+store.dispatch(addToCart(4));
+store.dispatch(addToCart(5));
 
+store.dispatch(addToCart(20,5));
 
 // REMOVE FROM CART
 store.dispatch({ type: "removeToCart", payload: { productId: 3} });
@@ -38,9 +41,9 @@ store.dispatch({ type: "removeToCart", payload: { productId: 3} });
 
 
 // ADD PRODUCT COUNT 
-store.dispatch({ type: "increaseCount", payload: { productId: 4} });
-store.dispatch({ type: "increaseCount", payload: { productId: 1} });
+store.dispatch(increaseCartItemQuantity(4));
+store.dispatch(increaseCartItemQuantity(70));
 
 
 // ADD PRODUCT COUNT 
-store.dispatch({ type: "decreaseCount", payload: { productId: 1} });
+store.dispatch(decreaseCartItemQuantity(4));
