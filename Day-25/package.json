@@ -14,5 +14,6 @@
   },
   "dependencies": {
     "redux": "^5.0.1"
-  }
+  },
+  "main": "cartReducer.js"
 }
