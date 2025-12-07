@@ -1,5 +1,9 @@
 import { combineReducers, createStore } from 'redux'
 import productsReducer from './productsReducer'
+// import { produce } from 'immer';
+
+
+
 import cartReducer, {
   addCartItem,
   decreaseCartItemQuantity,
@@ -21,18 +25,26 @@ export const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__?.()
 )
 
-// console.log(store)
 
-// store.dispatch(addCartItem(1))
-// store.dispatch(addCartItem(12))
 
-// store.dispatch(increaseCartItemQuantity(12))
 
-// store.dispatch(decreaseCartItemQuantity(12))
-// store.dispatch(decreaseCartItemQuantity(12))
+// const newUsers = users.map((user,i)=>{
+//     if(i==1){
+//       return {...user,age:20}
+//     }
+//     return user;
+// })
 
-// store.dispatch(addWishListItem(18))
-// store.dispatch(addWishListItem(11))
+// console.log(newUsers)
+// console.log(users)
 
-// store.dispatch(removeWishListItem(11))
-// store.dispatch(removeWishListItem(18))
+
+// const newUser = produce(users,(userCopy)=>{
+//     userCopy.push({userName:"Apple",age:10});
+// })
+
+// console.log(newUser);
+
+// console.log(users)
+
+
