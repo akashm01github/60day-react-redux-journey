@@ -16,11 +16,11 @@ export default function CartItem({productId, title, rating, price, imageUrl, qua
       <div className="item-price">${price}</div>
       <div className="item-quantity">
         <button onClick={()=>{
-            dispatch(decreaseCartItemQuantity(productId))
+            dispatch(decreaseCartItemQuantity({productId}))
         }}>-</button>
         <span>{quantity}</span>
         <button  onClick={()=>{
-            dispatch(increaseCartItemQuantity(productId))
+            dispatch(increaseCartItemQuantity({productId}))
         }}>+</button>
       </div>
       <div className="item-total">${quantity * price}</div>
