@@ -1,18 +1,12 @@
 import React from 'react'
 import CartItem from '../components/CartItem'
 import { useSelector } from 'react-redux'
-
+import { getAllCartItems, getCartItems, getCartLoadingState } from '../store/cartReducer';
 export default function Cart() {
 
-  const cartItems = useSelector(({products,cartItems})=>{
-    return cartItems.list.map(({productId,quantity})=>{
-          const cartProduct = products.list.find((product)=>product.id == productId);
-          return {...cartProduct,quantity}
-    })
-    .filter((({title})=>title))
-  });
+  const cartItems = useSelector(getAllCartItems);
 
-  const isLoading = useSelector((state)=>state.cartItems.loading);
+  const isLoading = useSelector(getCartLoadingState);
 
   console.log(isLoading)
 

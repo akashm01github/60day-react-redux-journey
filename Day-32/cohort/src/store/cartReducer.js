@@ -5,7 +5,7 @@
 // const CART_ITEM_DECREASE_QUANTITY = 'cart/decreaseItemQuantity';
 
 import { produce } from 'immer'
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 // Action Creators
 // export function addCartItem(productData) {
@@ -86,7 +86,7 @@ const slice = createSlice({
     },
 
     fetchCartItems(state, action) {
-        state.loading = true
+      state.loading = true
     },
 
     addCartItem(state, action) {
@@ -121,6 +121,38 @@ const slice = createSlice({
 
 })
 
+
+
+
+
+
+export const getCartItems = ({ products, cartItems }) => {
+  return cartItems.list.map(({ productId, quantity }) => {
+    const cartProduct = products.list.find((product) => product.id == productId);
+    return { ...cartProduct, quantity }
+  })
+    .filter((({ title }) => title))
+}
+
+
+const selectProducts = (state) => state.products.list;
+const selectCartItems = (state) => state.cartItems.list;
+
+
+export const getAllCartItems = createSelector(
+  [selectProducts, selectCartItems],
+  (products, cartItems) => {
+    return cartItems
+      .map(({ productId, quantity }) => {
+        const cartProduct = products.find((p) => p.id == productId);
+        return cartProduct ? { ...cartProduct, quantity } : null;
+      })
+      .filter(Boolean);
+  }
+);
+
+
+export const getCartLoadingState = (state) => state.cartItems.loading;
 
 export default slice.reducer;
 
