@@ -1,10 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CartIcon from '../assets/react.svg'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateAllProducts } from '../store/productsReducer';
+import { fetchProducts } from '../store/productsReducer';
+import { fetchCartItems, loadCartItem } from '../store/cartReducer';
 
 export default function Header() {
-  const cartItems = useSelector((state)=>state.cartItems);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async()=>{
+      dispatch(fetchProducts())
+      const data = await fetch("https://fakestoreapi.com/products");
+      const newData = await data.json();
+      dispatch(updateAllProducts(newData))
+    }
+
+    fetchData()
+
+     const fetchCartData = async()=>{
+      dispatch(fetchCartItems())
+      const data = await fetch("https://fakestoreapi.com/carts/5");
+      const newData = await data.json();
+      dispatch(loadCartItem(newData))
+    }
+
+    fetchCartData();
+
+
+    
+  }, [])
+
+
+  const cartItems = useSelector((state) => state.cartItems.list);
   return (
     <header>
       <div className="header-contents">
@@ -13,7 +42,7 @@ export default function Header() {
         </h1>
         <Link className="cart-icon" to="/cart">
           <img src={CartIcon} alt="cart-icon" />
-          <div className="cart-items-count">{(cartItems.reduce((acc,currentItem)=>acc+currentItem.quantity,0))}</div>
+          <div className="cart-items-count">{(cartItems.reduce((acc, currentItem) => acc + currentItem.quantity, 0))}</div>
         </Link>
       </div>
     </header>

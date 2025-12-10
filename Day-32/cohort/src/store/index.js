@@ -6,7 +6,7 @@ import cartReducer from './cartReducer'
 import wishListReducer from './wishListReducer'
 
 // MIDDLEWARE
-import { logger } from './middleware/logger'
+// import { logger } from './middleware/logger'
 
 
 
@@ -43,7 +43,7 @@ export const store = configureStore({
     cartItems: cartReducer,
     wishList: wishListReducer
   },
-  middleware: (getDefaultMiddleWare)=> getDefaultMiddleWare().concat(logger),
+  // middleware: (getDefaultMiddleWare)=> getDefaultMiddleWare().concat(logger),
 
 })
 

@@ -4,7 +4,17 @@ import { useSelector } from 'react-redux'
 
 export default function Cart() {
 
-  const cartItems = useSelector((state)=>state.cartItems);
+  const cartItems = useSelector(({products,cartItems})=>{
+    return cartItems.list.map(({productId,quantity})=>{
+          const cartProduct = products.list.find((product)=>product.id == productId);
+          return {...cartProduct,quantity}
+    })
+    .filter((({title})=>title))
+  });
+
+  const isLoading = useSelector((state)=>state.cartItems.loading);
+
+  console.log(isLoading)
 
   console.log(cartItems)
 
@@ -18,15 +28,15 @@ export default function Cart() {
           <div className="quantity">Quantity</div>
           <div className="total">Total</div>
         </div>
-        {cartItems.map(({ productId, title, rating, price, image, quantity }) => (
+        {cartItems.map(({ id, title, rating, price, image, quantity }) => (
           <CartItem
-            key={productId}
-            productId={productId}
+            key={id}
+            productId={id}
             title={title}
             price={price}
             quantity={quantity}
             imageUrl={image}
-            rating={rating}
+            rating={rating.rate}
           />
         ))}
         <div className="cart-header cart-item-container">

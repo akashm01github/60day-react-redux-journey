@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux'
 import Product from '../components/Product'
 
 export default function Home() {
-  const productsList = useSelector((state) => state.products);
+  const productsList = useSelector((state) => state.products.list);
+  const productsListIsLoading = useSelector((state) => state.products.loading);
+
+
   // console.log(productsList)
-  return (
-    <div className="products-container">
+  return productsListIsLoading ? (<h1>Loading.........</h1>) : (  <div className="products-container">
       {productsList.map(({ id, title, rating, price, image }) => (
         <Product
           key={id}
@@ -17,6 +19,5 @@ export default function Home() {
           image={image}
         />
       ))}
-    </div>
-  )
+    </div>)
 }
