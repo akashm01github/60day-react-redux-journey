@@ -1,38 +1,50 @@
-import { combineReducers, createStore } from 'redux'
-import productsReducer from './productsReducer'
-import cartReducer, {
-  addCartItem,
-  decreaseCartItemQuantity,
-  increaseCartItemQuantity,
-} from './cartReducer'
-import wishListReducer, {
-  addWishListItem,
-  removeWishListItem,
-} from './wishListReducer'
+import { configureStore } from '@reduxjs/toolkit'
 
-const reducer = combineReducers({
-  products: productsReducer,
-  cartItems: cartReducer,
-  wishList: wishListReducer,
+
+import productsReducer from './productsReducer'
+import cartReducer from './cartReducer'
+import wishListReducer from './wishListReducer'
+
+// MIDDLEWARE
+import { logger } from './middleware/logger'
+
+
+
+
+// function logger(store) {
+//   return function (next) {
+//     return function (action) {
+//       console.log(store)
+//       console.log(next)
+//       console.log(action)
+//       next(action)
+//     }
+//   }
+// }
+
+
+// CLEAN WAY
+// const logger  = (store)=>(next)=>(action)=>{
+//   console.log(store)
+//       console.log(next)
+//       console.log(action)
+//       next(action)
+// }
+
+
+
+
+
+
+
+export const store = configureStore({
+  reducer: {
+    products: productsReducer,
+    cartItems: cartReducer,
+    wishList: wishListReducer
+  },
+  middleware: (getDefaultMiddleWare)=> getDefaultMiddleWare().concat(logger),
+
 })
 
-export const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__?.()
-)
 
-// console.log(store)
-
-// store.dispatch(addCartItem(1))
-// store.dispatch(addCartItem(12))
-
-// store.dispatch(increaseCartItemQuantity(12))
-
-// store.dispatch(decreaseCartItemQuantity(12))
-// store.dispatch(decreaseCartItemQuantity(12))
-
-// store.dispatch(addWishListItem(18))
-// store.dispatch(addWishListItem(11))
-
-// store.dispatch(removeWishListItem(11))
-// store.dispatch(removeWishListItem(18))
