@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import productsReducer from './productsReducer'
 import cartReducer from './cartReducer'
 import wishListReducer from './wishListReducer'
+import { apiMiddleWare } from './middleware/api'
 
 // MIDDLEWARE
 // import { logger } from './middleware/logger'
@@ -43,7 +44,7 @@ export const store = configureStore({
     cartItems: cartReducer,
     wishList: wishListReducer
   },
-  // middleware: (getDefaultMiddleWare)=> getDefaultMiddleWare().concat(logger),
+  middleware: (getDefaultMiddleWare)=> getDefaultMiddleWare().concat(apiMiddleWare),
 
 })
 
