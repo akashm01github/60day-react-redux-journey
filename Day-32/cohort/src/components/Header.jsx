@@ -10,23 +10,32 @@ export default function Header() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async()=>{
-      dispatch(fetchProducts())
-      const data = await fetch("https://fakestoreapi.com/products");
-      const newData = await data.json();
-      dispatch(updateAllProducts(newData))
-    }
 
-    fetchData()
+    dispatch({
+      type:"api/makeCall",
+      payload:{
+        url:"products",
+        onSuccess:updateAllProducts.type,
 
-     const fetchCartData = async()=>{
-      dispatch(fetchCartItems())
-      const data = await fetch("https://fakestoreapi.com/carts/5");
-      const newData = await data.json();
-      dispatch(loadCartItem(newData))
-    }
+      }
+    })
+    // const fetchData = async()=>{
+    //   dispatch(fetchProducts())
+    //   const data = await fetch("https://fakestoreapi.com/products");
+    //   const newData = await data.json();
+    //   dispatch(updateAllProducts(newData))
+    // }
 
-    fetchCartData();
+    // fetchData()
+
+    //  const fetchCartData = async()=>{
+    //   dispatch(fetchCartItems())
+    //   const data = await fetch("https://fakestoreapi.com/carts/5");
+    //   const newData = await data.json();
+    //   dispatch(loadCartItem(newData))
+    // }
+
+    // fetchCartData();
 
 
     
