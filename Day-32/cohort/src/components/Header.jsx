@@ -5,20 +5,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateAllProducts } from '../store/productsReducer';
 import { fetchProducts } from '../store/productsReducer';
 import { fetchCartItems, loadCartItem } from '../store/cartReducer';
+import { fetchData } from '../store/middleware/api';
 
 export default function Header() {
   const dispatch = useDispatch();
 
   useEffect(() => {
 
-    dispatch({
-      type:"api/makeCall",
-      payload:{
-        url:"products",
-        onSuccess:updateAllProducts.type,
-
+    dispatch(fetchData(
+      {
+        url: "products",
+        onSuccess: updateAllProducts.type,
+        onStart: fetchProducts.type
       }
-    })
+    ))
+
+
+    dispatch(fetchData({
+      url: "cart/5",
+      onSuccess: loadCartItem.type,
+      onStart: fetchCartItems.type
+    }))
+
+
+
     // const fetchData = async()=>{
     //   dispatch(fetchProducts())
     //   const data = await fetch("https://fakestoreapi.com/products");
@@ -38,7 +48,6 @@ export default function Header() {
     // fetchCartData();
 
 
-    
   }, [])
 
 
