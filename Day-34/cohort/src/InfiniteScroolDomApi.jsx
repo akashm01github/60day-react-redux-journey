@@ -36,7 +36,7 @@ const InfiniteScroolDomApi = () => {
    
 
     return (
-        <div onScroll={handelScrool} className='bg-yellow-100 w-[400px]  h-[400px] overflow-y-scroll'>
+        <div onScroll={handelScrool} className='bg-yellow-100 w-100  h-100 overflow-y-scroll'>
             {data.map((row, index) => {
                 return <div className='border-b py-2 text-center' key={index}>
                     {index + 1}
