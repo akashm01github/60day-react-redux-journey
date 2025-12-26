@@ -187,3 +187,9 @@ form button {
   left: 50%;
   transform: translate(-40%, -90%);
 }
+
+.btn_dlt{
+  font-size: 30px;
+  margin-left: 10px;
+  color: rgb(251, 12, 12);
+}
