@@ -17,9 +17,9 @@ export default function CartItem({productId, title, rating, price, imageUrl, qua
       </div>
       <div className="item-price">${price}</div>
       <div className="item-quantity">
-        <button onClick={()=>dispatch(decreaseCartItemQuantity(productId))}>-</button>
+        <button onClick={()=>dispatch(decreaseCartItemQuantity({productId}))}>-</button>
         <span>{quantity}</span>
-        <button onClick={()=>dispatch(increaseCartItemQuantity(productId))}>+</button>
+        <button onClick={()=>dispatch(increaseCartItemQuantity({productId}))}>+</button>
 
         <i onClick={()=>dispatch(removeCartItem(productId))} className="ri-delete-bin-5-fill btn_dlt"></i>
       </div>
