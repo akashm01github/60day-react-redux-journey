@@ -2,8 +2,6 @@ import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers, createStore } from 'redux'
 import productsReducer from './slices/productsSlice'
 
-// import {produce} from 'immer'
-
 import cartReducer, {
   addCartItem,
   decreaseCartItemQuantity,
@@ -14,19 +12,20 @@ import wishListReducer, {
   removeWishListItem,
 } from './slices/wishListSlice'
 
+import logger from './middleware/logger'
 
-// const reducer = combineReducers({
-//   products: productsReducer,
-//   cartItems: cartReducer,
-//   wishList: wishListReducer,
-// })
+
+
 
 export const store = configureStore({
   reducer: {
     products: productsReducer,
     cartItems: cartReducer,
     wishList: wishListReducer,
-  }
+  },
+  middleware:(getDeafultValue)=>getDeafultValue().concat(logger)
 })
+
+
 
 
