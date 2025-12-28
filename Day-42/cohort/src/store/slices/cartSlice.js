@@ -76,14 +76,21 @@ import { createSlice } from '@reduxjs/toolkit';
 // }
 
 
-const findItemIndex = (state,action) => state.findIndex((item) => item.productId == action.payload.productId)
+const findItemIndex = (state, action) => state.findIndex((item) => item.productId == action.payload.productId)
 
 const slice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
+
+    loadCartItems(state, action) {
+      return action.payload.products;
+    },
+
+
+
     addCartItem(state, action) {
-      const existingItemIndex = findItemIndex(state,action)
+      const existingItemIndex = findItemIndex(state, action)
       if (existingItemIndex !== -1) {
         state[existingItemIndex].quantity += 1;
         return state;
@@ -93,19 +100,21 @@ const slice = createSlice({
       }
     },
 
+
+
     removeCartItem(state, action) {
-      const existingItemIndex = findItemIndex(state,action)
+      const existingItemIndex = findItemIndex(state, action)
       state.splice(existingItemIndex, 1);
       return state;
     },
 
     increaseCartItemQuantity(state, action) {
-     const existingItemIndex = findItemIndex(state,action)
+      const existingItemIndex = findItemIndex(state, action)
       state[existingItemIndex].quantity += 1;
     },
 
     decreaseCartItemQuantity(state, action) {
-    const existingItemIndex = findItemIndex(state,action)
+      const existingItemIndex = findItemIndex(state, action)
       state[existingItemIndex].quantity -= 1;
       if (state[existingItemIndex].quantity == 0) {
         state.splice(existingItemIndex, 1);
@@ -117,4 +126,4 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const { addCartItem, removeCartItem, increaseCartItemQuantity, decreaseCartItemQuantity } = slice.actions
+export const {loadCartItems, addCartItem, removeCartItem, increaseCartItemQuantity, decreaseCartItemQuantity } = slice.actions

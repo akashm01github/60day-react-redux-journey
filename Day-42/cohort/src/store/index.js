@@ -23,7 +23,7 @@ export const store = configureStore({
     cartItems: cartReducer,
     wishList: wishListReducer,
   },
-  middleware:(getDeafultValue)=>getDeafultValue().concat(logger)
+  // middleware:(getDeafultValue)=>getDeafultValue().concat(logger)
 })
 
 
