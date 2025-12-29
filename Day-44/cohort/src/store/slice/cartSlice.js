@@ -1,38 +1,50 @@
 // Action Types
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 
-const findItemIndex = (state,action) => state.findIndex((item) => item.productId == action.payload.productId)
+const findItemIndex = (state, action) => state.findIndex((item) => item.productId == action.payload.productId)
 
 const slice = createSlice({
   name: "cart",
-  initialState: [],
+  initialState: {
+    list: [],
+    loading: false
+  },
   reducers: {
+
+    loadCartItems(state, action) {
+      state.list = action.payload.products;
+      state.loading = false
+    },
+
+    fetchCartLists(state, action) {
+      state.loading = true
+    },
     addCartItem(state, action) {
-      const existingItemIndex = findItemIndex(state,action);
+      const existingItemIndex = findItemIndex(state.list, action);
 
       if (existingItemIndex !== -1) {
-        state[existingItemIndex].quantity += 1
+        state.list[existingItemIndex].quantity += 1
       }
-      else{
-        state.push({ ...action.payload, quantity: 1 })
+      else {
+        state.list.push({ ...action.payload, quantity: 1 })
       }
     },
 
     removeCartItem(state, action) {
-      const existingItemIndex = findItemIndex(state,action)
-      state.splice(existingItemIndex, 1);
+      const existingItemIndex = findItemIndex(state.list, action)
+      state.list.splice(existingItemIndex, 1);
     },
 
     increaseCartItemQuantity(state, action) {
-      const existingItemIndex = findItemIndex(state,action)
-      state[existingItemIndex].quantity += 1
+      const existingItemIndex = findItemIndex(state.list, action)
+      state.list[existingItemIndex].quantity += 1
     },
     decreaseCartItemQuantity(state, action) {
-      const existingItemIndex = findItemIndex(state,action)
-      state[existingItemIndex].quantity -= 1
-      if (state[existingItemIndex].quantity == 0) {
-        state.splice(existingItemIndex, 1);
+      const existingItemIndex = findItemIndex(state.list, action)
+      state.list[existingItemIndex].quantity -= 1
+      if (state.list[existingItemIndex].quantity == 0) {
+        state.list.splice(existingItemIndex, 1);
       }
     }
   }
@@ -41,6 +53,39 @@ const slice = createSlice({
 
 
 
+// export const getAllCart = ({ products, cartItems}) => {
+//   return cartItems.list.map(({ productId, quantity }) => {
+//     const cartProduct = products.list.find((product) => product.id == productId)
+//     return { ...cartProduct, quantity }
+//   })
+// }
+
+
+
+
+const selectCartList = (state)=>state.cartItems.list;
+
+const selectProductList = (state)=>state.products.list;
+
+
+export const getAllCartItems = createSelector(
+  [selectCartList,selectProductList],
+  (cartList,productList)=>{
+     return cartList.map(({productId,quantity})=>{
+        const cartProduct = productList.find((product)=>product.id == productId);
+
+        return {...cartProduct,quantity}
+     })
+  }
+)
+
+
+
+export const getCartLoading = (state) => state.cartItems.loading;
+
+
+
+
 export default slice.reducer;
 
-export const {addCartItem,removeCartItem,increaseCartItemQuantity,decreaseCartItemQuantity} = slice.actions;
+export const { loadCartItems, fetchCartLists, addCartItem, removeCartItem, increaseCartItemQuantity, decreaseCartItemQuantity } = slice.actions;

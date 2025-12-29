@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CartIcon from '../assets/react.svg'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProductLists, updateAllProducts } from '../store/slice/productsSlice';
+import { fetchCartLists, loadCartItems } from '../store/slice/cartSlice';
 
 export default function Header() {
-  const cartItems = useSelector((state)=>state.cartItems);
+  const cartItems = useSelector((state)=>state.cartItems.list);
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+      dispatch(fetchProductLists())
+      const data = await fetch("https://fakestoreapi.com/products");
+      const productsList = await data.json();
+      dispatch(updateAllProducts(productsList));
+    }
+    fetchData()
+
+
+    const fectchCartData = async()=>{
+      dispatch(fetchCartLists());
+      const data = await fetch("https://fakestoreapi.com/carts/5");
+      const cartList = await data.json();
+      dispatch(loadCartItems(cartList))
+    }
+    fectchCartData();
+  },[])
 
   return (
     <header>
@@ -13,7 +36,7 @@ export default function Header() {
           <Link to="/">Shopee</Link>
         </h1>
         <Link className="cart-icon" to="/cart">
-          <img src={CartIcon} alt="cart-icon" />
+          <i className="ri-shopping-bag-4-fill cart_icon"></i>
           <div className="cart-items-count">{cartItems.reduce((acc,curr)=>acc+curr.quantity,0)}</div>
         </Link>
       </div>

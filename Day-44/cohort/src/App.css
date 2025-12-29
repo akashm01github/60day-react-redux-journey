@@ -203,3 +203,8 @@ form button {
     scale: 0.80;
   }
 }
+
+.cart_icon{
+  color: blue;
+  font-size: 30px;
+}

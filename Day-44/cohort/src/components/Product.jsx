@@ -5,7 +5,7 @@ export default function Product({productId, id, title, rating, price, image }) {
 
   const dispatch = useDispatch();
 
-  // console.log(image)
+ 
   return (
     <div className="product">
       <div className="product-image">
@@ -21,7 +21,7 @@ export default function Product({productId, id, title, rating, price, image }) {
         <p className="price">${price}</p>
       </div>
       <div className="cta-container">
-        <button onClick={()=>dispatch(addCartItem({productId,title, rating, price, image}))}>Add to Cart</button>
+        <button onClick={()=>dispatch(addCartItem({productId}))}>Add to Cart</button>
         <button>Buy Now</button>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import CartItem from '../components/CartItem'
 import { useSelector } from 'react-redux'
+import {getAllCartItems, getCartLoading } from '../store/slice/cartSlice';
 
 export default function Cart() {
 
@@ -43,7 +44,11 @@ export default function Cart() {
   // },
   // ]
 
-  const cartItems = useSelector((state)=>state.cartItems);
+  const cartItems = useSelector(getAllCartItems);
+
+
+  const isLoading  = useSelector(getCartLoading)
+  
   console.log(cartItems)
 
   return (
@@ -56,17 +61,18 @@ export default function Cart() {
           <div className="quantity">Quantity</div>
           <div className="total">Total</div>
         </div>
-        {cartItems.map(({ productId, title, rating, price, image, quantity }) => (
+        {isLoading ? (<h1>Loading...</h1>) : (cartItems.map(({ id, title, rating, price, image, quantity }) => (
           <CartItem
-            key={productId}
-            productId={productId}
+            key={id}
+            productId={id}
             title={title}
             price={price}
             quantity={quantity}
             imageUrl={image}
             rating={rating.rate}
           />
-        ))}
+        )))}
+       
         <div className="cart-header cart-item-container">
           <div></div>
           <div></div>
