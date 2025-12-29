@@ -11,22 +11,43 @@ export default function Header() {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    const fetchData = async()=>{
-      dispatch(fetchProductLists())
-      const data = await fetch("https://fakestoreapi.com/products");
-      const productsList = await data.json();
-      dispatch(updateAllProducts(productsList));
-    }
-    fetchData()
+    // const fetchData = async()=>{
+    //   dispatch(fetchProductLists())
+    //   const data = await fetch("https://fakestoreapi.com/products");
+    //   const productsList = await data.json();
+    //   dispatch(updateAllProducts(productsList));
+    // }
+    // fetchData()
 
 
-    const fectchCartData = async()=>{
-      dispatch(fetchCartLists());
-      const data = await fetch("https://fakestoreapi.com/carts/5");
-      const cartList = await data.json();
-      dispatch(loadCartItems(cartList))
-    }
-    fectchCartData();
+    // const fectchCartData = async()=>{
+    //   dispatch(fetchCartLists());
+    //   const data = await fetch("https://fakestoreapi.com/carts/5");
+    //   const cartList = await data.json();
+    //   dispatch(loadCartItems(cartList))
+    // }
+    // fectchCartData();
+    
+    dispatch({
+      type:"api/makeCall",
+      payload:{
+        url:'/products',
+        onSuccess: updateAllProducts.type,
+        onStart:fetchProductLists.type
+      }
+    })
+
+    
+    dispatch({
+      type:"api/makeCall",
+      payload:{
+        url:'/carts/5',
+        onSuccess: loadCartItems.type,
+        onStart:fetchCartLists.type
+      }
+    })
+
+
   },[])
 
   return (
