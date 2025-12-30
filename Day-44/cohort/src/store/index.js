@@ -7,6 +7,7 @@ import cartReducer from './slice/cartSlice'
 
 import wishListReducer from './slice/wishListSlice'
 import { apiMiddleWare } from './middleware/api'
+import { func } from './middleware/func'
 
 
 
@@ -17,5 +18,5 @@ export const store = configureStore({
     wishList: wishListReducer,
   },
 
-  middleware: (getDefaultValue)=>getDefaultValue().concat(apiMiddleWare)
+  middleware: (getDefaultValue)=>getDefaultValue().concat(apiMiddleWare,func)
 })

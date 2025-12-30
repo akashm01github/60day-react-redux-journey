@@ -27,3 +27,5 @@ export const apiMiddleWare = ({ dispatch }) => (next) => (action) => {
         next(action);
     }
 }
+
+export const fetchData = (payload) => ({ type: 'api/makeCall', payload })

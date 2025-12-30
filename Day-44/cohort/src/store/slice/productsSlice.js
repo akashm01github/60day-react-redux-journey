@@ -28,6 +28,18 @@ export const getProductLoading = (state) => state.products.loading
 
 
 
+export const fetchAllProductsData =()=> (dispatch) => {
+  const fetchAllData = async () => {
+    dispatch(fetchProductLists())
+    const data = await fetch(`https://fakestoreapi.com/products`);
+    const productsList = await data.json();
+    dispatch(updateAllProducts(productsList)) 
+
+  }
+  fetchAllData()
+}
+
+
 export default productSlice.reducer;
 
 export const {updateAllProducts,fetchProductLists} = productSlice.actions

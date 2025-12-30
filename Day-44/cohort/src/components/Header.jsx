@@ -2,15 +2,17 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CartIcon from '../assets/react.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductLists, updateAllProducts } from '../store/slice/productsSlice';
-import { fetchCartLists, loadCartItems } from '../store/slice/cartSlice';
+import { fetchAllProductsData, fetchProductLists, updateAllProducts } from '../store/slice/productsSlice';
+import { fetchAllCartItemsData, fetchCartLists, loadCartItems } from '../store/slice/cartSlice';
+import { fetchData } from '../store/middleware/api';
 
 export default function Header() {
-  const cartItems = useSelector((state)=>state.cartItems.list);
+  const cartItems = useSelector((state) => state.cartItems.list);
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
+    //! NORMAL API CALL
     // const fetchData = async()=>{
     //   dispatch(fetchProductLists())
     //   const data = await fetch("https://fakestoreapi.com/products");
@@ -27,28 +29,33 @@ export default function Header() {
     //   dispatch(loadCartItems(cartList))
     // }
     // fectchCartData();
-    
-    dispatch({
-      type:"api/makeCall",
-      payload:{
-        url:'/products',
-        onSuccess: updateAllProducts.type,
-        onStart:fetchProductLists.type
-      }
-    })
+  
 
-    
-    dispatch({
-      type:"api/makeCall",
-      payload:{
-        url:'/carts/5',
-        onSuccess: loadCartItems.type,
-        onStart:fetchCartLists.type
-      }
-    })
+   //! CASTOM API MIDDLEWARE 
+    // dispatch(
+    //   fetchData({
+    //     url: '/products',
+    //     onSuccess: updateAllProducts.type,
+    //     onStart: fetchProductLists.type
+    //   })
+    // )
+
+    //! CASTOM API MIDDLEWARE 
+
+    // dispatch(fetchData({
+    //   url: '/carts/5',
+    //   onSuccess: loadCartItems.type,
+    //   onStart: fetchCartLists.type
+    // }))
 
 
-  },[])
+    // !ASYNC THUNK
+    dispatch(fetchAllProductsData())
+
+    dispatch(fetchAllCartItemsData())
+
+
+  }, [])
 
   return (
     <header>
@@ -58,7 +65,7 @@ export default function Header() {
         </h1>
         <Link className="cart-icon" to="/cart">
           <i className="ri-shopping-bag-4-fill cart_icon"></i>
-          <div className="cart-items-count">{cartItems.reduce((acc,curr)=>acc+curr.quantity,0)}</div>
+          <div className="cart-items-count">{cartItems.reduce((acc, curr) => acc + curr.quantity, 0)}</div>
         </Link>
       </div>
     </header>

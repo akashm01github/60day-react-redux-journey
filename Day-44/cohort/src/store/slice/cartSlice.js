@@ -63,19 +63,19 @@ const slice = createSlice({
 
 
 
-const selectCartList = (state)=>state.cartItems.list;
+const selectCartList = (state) => state.cartItems.list;
 
-const selectProductList = (state)=>state.products.list;
+const selectProductList = (state) => state.products.list;
 
 
 export const getAllCartItems = createSelector(
-  [selectCartList,selectProductList],
-  (cartList,productList)=>{
-     return cartList.map(({productId,quantity})=>{
-        const cartProduct = productList.find((product)=>product.id == productId);
+  [selectCartList, selectProductList],
+  (cartList, productList) => {
+    return cartList.map(({ productId, quantity }) => {
+      const cartProduct = productList.find((product) => product.id == productId);
 
-        return {...cartProduct,quantity}
-     })
+      return { ...cartProduct, quantity }
+    })
   }
 )
 
@@ -84,6 +84,17 @@ export const getAllCartItems = createSelector(
 export const getCartLoading = (state) => state.cartItems.loading;
 
 
+
+export const fetchAllCartItemsData =()=> (dispatch) => {
+  const fetchAllData = async () => {
+    dispatch(fetchCartLists())
+    const data = await fetch(`https://fakestoreapi.com/carts/5`);
+    const productsList = await data.json();
+    dispatch(loadCartItems(productsList))
+
+  }
+  fetchAllData()
+}
 
 
 export default slice.reducer;
