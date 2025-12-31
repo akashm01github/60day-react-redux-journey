@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import CartIcon from '../assets/react.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllProductsData, fetchProductLists, updateAllProducts } from '../store/slice/productsSlice';
-import { fetchAllCartItemsData, fetchCartLists, loadCartItems } from '../store/slice/cartSlice';
+import { fetchAllCartItemsData} from '../store/slice/cartSlice';
 import { fetchData } from '../store/middleware/api';
 
 export default function Header() {
