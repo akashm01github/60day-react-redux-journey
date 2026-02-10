@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap');
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+
+.container {
+    width: 100%;
+    height: 100vh;
+    /* background-color: yellow; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.card {
+    width: 300px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 40px;
+    background-color: #f0e6d2;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+
+}
+
+.commaPng {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: -18px;
+    right: 20px;
+    rotate: 180deg;
+}
+
+
+.commaPn2 {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -18px;
+    left: 20px;
+    rotate: 360deg;
+}
+
+.card .title {
+    font-size: 19px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+}
+
+.author {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Dancing Script", cursive;
+}
+
+
+@media (min-width:768px) {
+    .card {
+        width: 500px;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        border-radius: 40px;
+        background-color: #f0e6d2;
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
+}
+
+@media (min-width:1024px) {
+    .card {
+        width: 800px;
+        border-left: 6px solid black;
+        border-right: 6px solid black;
+        border-radius: 40px;
+        background-color: #f0e6d2;
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .card .title {
+        font-size: 25px;
+        text-align: center;
+        margin-bottom: 10px;
+        font-family: "Archivo Black", sans-serif;
+        font-weight: 400;
+    }
+
+    .author {
+        font-size: 26px;
+        font-weight: 700;
+        font-family: "Dancing Script", cursive;
+    }
+
+    .commaPng {
+        width: 70px;
+        height: 50px;
+    }
+
+    .commaPn2 {
+        width: 70px;
+        height: 50px;
+    }
+}
