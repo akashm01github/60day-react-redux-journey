@@ -1,38 +1,18 @@
-import React, { useRef } from 'react'
-
+import React from 'react'
 import './index.css'
+import TabTest from './components/Tabs/TabTest'
+import Modal from './components/Modal/Modal'
+import ModleTest from './components/Modal/ModleTest'
 
 const App = () => {
-
-  const userRef = useRef();
-
-  const passwordRef = useRef()
-
-
-
-  const handelSubmit = (e) => {
-
-    e.preventDefault()
-
-    const user = userRef.current.value;
-
-    const password = passwordRef.current.value
-
-    console.log(user,password)
-
-  }
   return (
     <div>
-      <form onSubmit={(e) => handelSubmit(e)} className='container'>
-        <input ref={userRef} id='user' type="text" placeholder='Enter the Name' />
-        <input ref={passwordRef} id='password' type="text" placeholder='Enter the Password' />
-        <button>Submit</button>
-      </form>
+      <h1>
+        {/* <TabTest/> */}
+        <ModleTest/>
+      </h1>
     </div>
   )
 }
 
 export default App
-
-
-
