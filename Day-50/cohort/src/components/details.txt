@@ -1,0 +1,9 @@
+https://dummyjson.com/products/
+
+
+| count | skip value | Meaning       |
+| ----- | ---------- | ------------- |
+| 0     | 0          | First page    |
+| 1     | 20         | Skip first 20 |
+| 2     | 40         | Skip first 40 |
+| 3     | 60         | Skip first 60 |

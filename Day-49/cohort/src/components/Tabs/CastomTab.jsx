@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Tab.css'
 const CastomTab = ({ tabsContent, onChange }) => {
 
+    // To track the active tab index
     const [currentTabIndex, setCurrentTabIndex] = useState(0)
 
     function handelOnClick(getCurrentIndex) {

@@ -12,6 +12,7 @@ const ModleTest = () => {
     function onClose() {
         setShosModalPopUp(false)
     }
+    
     return (
         <div className='container'>
             <button onClick={() => handleToggleModalPopup()}><span class="shadow"></span>
