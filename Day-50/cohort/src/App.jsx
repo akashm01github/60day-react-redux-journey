@@ -5,8 +5,8 @@ import Test from './components/scroll_to_Top/Test'
 const App = () => {
   return (
     <div>
-      {/* <LodeMore/> */}
-      <Test/>
+      <LodeMore/>
+      {/* <Test/> */}
     </div>
   )
 }

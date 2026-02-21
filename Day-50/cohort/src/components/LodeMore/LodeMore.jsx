@@ -40,7 +40,6 @@ const LodeMore = () => {
     }, [count])
 
 
-    // DISABLE BUTTON
 
     useEffect(() => {
         if (products && products.length === 100) setDisabled(true)
