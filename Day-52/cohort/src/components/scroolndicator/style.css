@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.top_container {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  background-color: #B2A5FF;
+}
+
+
+.scroll_progressContainer {
+  width: 100%;
+  height: 20px;
+  background-color: #FF9D00;
+  
+}
+
+.scroll_progressBar{
+  height: 20px;
+  background-color: #A31D1D;
+  border-end-end-radius: 8px;
+  
+}
