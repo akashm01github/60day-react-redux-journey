@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "name": "Akash Mukherjee",
+      "age": 29,
+      "email": "",
+      "id": "f952"
+    },
+    {
+      "name": "Amit Das",
+      "age": 32,
+      "email": "amit.das@yahoo.com",
+      "id": "1bd5"
+    },
+    {
+      "name": "Sneha Paul",
+      "age": 27,
+      "email": "sneha.paul@outlook.com",
+      "id": "2ec6"
+    },
+    {
+      "name": "Rahul Chatterjee",
+      "age": 35,
+      "email": "rahul.chatterjee@gmail.com",
+      "id": "a04a"
+    },
+    {
+      "id": "9fb3",
+      "name": "Ram",
+      "email": "",
+      "age": 30
+    }
+  ]
+}

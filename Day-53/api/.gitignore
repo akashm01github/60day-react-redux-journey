@@ -1,0 +1,57 @@
+# =====================
+# OS files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# Node / JS
+# =====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =====================
+# Build outputs
+# =====================
+dist/
+build/
+.out/
+coverage/
+
+# =====================
+# Environment variables
+# =====================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# =====================
+# Logs
+# =====================
+logs/
+*.log
+
+# =====================
+# Editor / IDE
+# =====================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =====================
+# Cache
+# =====================
+.cache/
+.parcel-cache/
+
+# =====================
+# Misc
+# =====================
+*.tgz
+*.zip

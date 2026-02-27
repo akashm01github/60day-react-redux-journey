@@ -1,0 +1,26 @@
+🟢 REDUX TOPICS 
+--------------------
+1. Redux
+2. React-Redux
+3. Redux-thunk
+4. Redux-Toolkit
+5. RTK Query
+6. Redux Saga
+
+---------------------
+
+🗺️ ROADMAP
+
+1. Redux Concepts/ Terms
+
+2. Redux.with React
+
+3. Redux ToolKit(RTK) with React
+
+4. RTK Query with React
+
+5. Project with RTK Async Thunk
+
+6. Redux Saga
+
+---------------------
