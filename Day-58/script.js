@@ -1,5 +1,5 @@
 const { createStore, combineReducers } = require("redux");
-import cartReducer, { ADDTOCART, DECREASE_QUANTITY, INCREASE_QUANTITY, REMOVE_FROM_CART } from './cartReducer';
+import cartReducer, { addToCart, ADDTOCART, DECREASE_QUANTITY, decreaseQuantity, INCREASE_QUANTITY, increaseQuantity, REMOVE_FROM_CART, removeFromCart } from './cartReducer';
 import { products } from './productList';
 import productReducer from './productReducer';
 
@@ -21,20 +21,23 @@ store.subscribe(() => {
 
 
 //! ADD TO CART ITEM 
-store.dispatch({ type: ADDTOCART, payload: { productId: 1, quantity: 1 } });
-store.dispatch({ type: ADDTOCART, payload: { productId: 2, quantity: 1 } });
-store.dispatch({ type: ADDTOCART, payload: { productId: 3, quantity: 1 } });
-store.dispatch({ type: ADDTOCART, payload: { productId: 4, quantity: 1 } });
+store.dispatch(addToCart(1));
+store.dispatch(addToCart(2,3));
+store.dispatch(addToCart(3,2));
+store.dispatch(addToCart(4,2));
+store.dispatch(addToCart(5));
 
 
 
 //! REMOVE FROM CART
-store.dispatch({ type: REMOVE_FROM_CART, payload: { productId: 4 } });
+store.dispatch(removeFromCart(4));
 
 
 //! INCREASE QUANTITY 
-store.dispatch({ type: INCREASE_QUANTITY, payload: { productId: 3 } });
+store.dispatch(increaseQuantity(3));
+store.dispatch(increaseQuantity(2));
 
 
 //! DECREASE QUANTITY 
-store.dispatch({ type: DECREASE_QUANTITY, payload: { productId: 3 } });
+store.dispatch(decreaseQuantity(3));
+store.dispatch(decreaseQuantity(3));
