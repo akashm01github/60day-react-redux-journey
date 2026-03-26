@@ -1,0 +1,79 @@
+//! ACTIONS
+
+export const ADD_TO_CART = "cart/addToCart";
+
+export const REMOVE_FROM_CART = "cart/removeFromCart";
+
+export const INCREASE_QUANTITY = "cart/increaseQuantity";
+
+export const DECREASE_QUANTITY = "cart/decreaseQuantity";
+
+
+
+//! ACTION CREATORS
+
+//todo ADD TO CART
+export function addTocart(productId, quantity=1){
+    return { type: ADD_TO_CART, payload: { productId, quantity} }
+}
+
+
+//todo REMOVE FROM CART
+
+export function removeFromCart(productId){
+    return { type: REMOVE_FROM_CART, payload: { productId} }
+}
+
+
+//todo INCREASE QUNATITY
+
+export function increaseQuantity(productId){
+    return { type: INCREASE_QUANTITY, payload: { productId} }
+}
+
+
+//todo INCREASE QUNATITY
+export function decreaseQuantity(productId){
+    return { type: DECREASE_QUANTITY, payload: { productId} }
+}
+ 
+
+
+
+export default function cartReducer(state = [], action) {
+    switch (action.type) {
+        case ADD_TO_CART:
+            return [...state, action.payload]
+            break;
+
+
+        case REMOVE_FROM_CART:
+            return state.filter((cartItem) => cartItem.productId != action.payload.productId)
+            break;
+
+
+
+        case INCREASE_QUANTITY:
+            return state.map((cartItem) => {
+                    if (cartItem.productId == action.payload.productId) {
+                        return { ...cartItem, quantity: cartItem.quantity + 1 }
+                    }
+                    return cartItem
+                })
+            
+            break;
+
+        case DECREASE_QUANTITY:
+           return state.map((cartItem) => {
+                    if (cartItem.productId == action.payload.productId) {
+                        return { ...cartItem, quantity: cartItem.quantity - 1 }
+                    }
+                    return cartItem
+                })
+            
+            break;
+
+        default:
+            return state;
+    }
+}
