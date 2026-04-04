@@ -3,19 +3,24 @@ import { useSelector } from 'react-redux'
 import Product from '../components/Product'
 
 export default function Home() {
-  const productsList = useSelector((state) => state.products);
+  const productsList = useSelector((state) => state.products.list);
+
+  const isLoading = useSelector((state) => state.products.loading);
+
+  const error = useSelector((state) => state.products.error);
+
   return (
-    <div className="products-container">
-      {productsList.map(({ id, title, rating, price, image }) => (
+    isLoading ? <h1 style={{textAlign:'center'}}>Loading.....</h1> : (error  || (<div className="products-container">
+      {productsList.map(({ id, title, rating, price, images }) => (
         <Product
           key={id}
           productId={id}
           title={title}
-          rating={rating.rate}
+          rating={rating}
           price={price}
-          image={image}
+          image={images[0]}
         />
       ))}
-    </div>
+    </div>))
   )
 }

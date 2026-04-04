@@ -4,9 +4,14 @@ import { useSelector } from 'react-redux'
 
 export default function Cart() {
 
-  const cartItems= useSelector((state)=>state.cartItems);
+  const cartItems = useSelector(({ products, cartItems }) => {
+    return cartItems.map(({ productId, quantity }) => {
+      const cartProduct = products.list.find((product) => product.id === productId);
+      return {...cartProduct, quantity};
+    })
+  });
 
-  // console.log(cartItems)
+  console.log(cartItems)
 
   return (
     <div className="cart-container">
@@ -18,14 +23,14 @@ export default function Cart() {
           <div className="quantity">Quantity</div>
           <div className="total">Total</div>
         </div>
-        {cartItems.map(({ productId, title, rating, price, image, quantity }) => (
+        {cartItems.map(({ id, title, rating, price, images, quantity }) => (
           <CartItem
-            key={productId}
-            productId={productId}
+            key={id}
+            productId={id}
             title={title}
             price={price}
             quantity={quantity}
-            imageUrl={image}
+            imageUrl={images[0]}
             rating={rating.rate}
           />
         ))}
@@ -33,7 +38,7 @@ export default function Cart() {
           <div></div>
           <div></div>
           <div></div>
-          <div className="total">{cartItems.reduce((acc,curr)=>acc+ (curr.quantity * curr.price),0)}</div>
+          <div className="total">${cartItems.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)}</div>
         </div>
       </div>
     </div>
